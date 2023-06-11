@@ -44,17 +44,17 @@ function Nav(){
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/about-us" className="nav-links" onClick={closeMobilemenu}>
+                                <Link to="/About-Us" className="nav-links" onClick={closeMobilemenu}>
                                     About Us
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/rooms" className="nav-links" onClick={closeMobilemenu}>
+                                <Link to="/Rooms" className="nav-links" onClick={closeMobilemenu}>
                                     Rooms
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/book-now" className="nav-links-mobile" onClick={closeMobilemenu}>
+                                <Link to="/Book" className="nav-links-mobile" onClick={closeMobilemenu}>
                                     Book now
                                 </Link>
                             </li>
