@@ -30,7 +30,7 @@ function Nav(){
             <nav className="navbar">
                 <div className="navbar-container">
                     <Link to="/" className="navbar-logo" onClick={closeMobilemenu}>
-                        WOOSH
+                    ParadiseBeach
                     </Link>
                     
                     {/* Hamburger menu */}
