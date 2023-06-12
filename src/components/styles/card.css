@@ -1,4 +1,4 @@
-.cards {
+.card {
     padding: 4rem;
     background: #fff;
   }
@@ -23,13 +23,16 @@
   
   .card-item {
     margin-bottom: 24px;
+    background-color: white;
+    border-radius: 12px;
   }
   
   .card-items {
     display: flex;
     flex: 1;
     margin: 0 1rem;
-    border-radius: 10px;
+    gap: 10px;
+    justify-content: center;
   }
   
   .card-item-link {
@@ -47,6 +50,7 @@
   .card-item-pic-wrap {
     position: relative;
     width: 100%;
+    height:100%;
     padding-top: 67%;
     overflow: hidden;
   }
