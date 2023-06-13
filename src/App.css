@@ -5,6 +5,11 @@
     font-family: 'PT Sans', sans-serif;
   }
   
+  .img-container img{
+    max-width: 100%;
+    width: 100%;
+  }
+
   .home,
   .services,
   .products,
@@ -40,4 +45,58 @@
     background-repeat: no-repeat;
     color: #fff;
     font-size: 100px;
+  }
+
+  /* About Us */
+  .about-us h1{
+  font-size: 70px;
+  }
+  .about-us-container{
+    display: grid;
+    grid-template-areas:
+      'input1 input2';
+    gap: 10px;
+  }
+
+  .about-text{
+    grid-area: input1;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .about-img{
+    grid-area: input2;
+    max-width: 100%;
+  }
+  .about-img img{
+    width: 100%;
+  }
+  .about-section{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 4rem;
+    min-height: 100vh;
+  }
+  #beautiful-shores{
+    background-image: url('/public/images/sunrise-pose.jpg');
+  }
+  #one-with-nature{
+    background-image: url('/public/images/sunset-reeds.jpg');
+    min-height: 150vh;
+  }
+  #ocean-rocks{
+    background-image: url('/public/images/ocean-rocks.jpg');
+  }
+  #night-life{
+    display: grid;
+    grid-template-areas:
+      'input1 input2';
+    gap: 10px;
+  }
+  .about-content:nth-child(1){
+    grid-area: input1;
+    width: 50vw;
+  }
+  .about-img{
+    grid-area: input2;
   }
