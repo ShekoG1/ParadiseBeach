@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: 'PT Sans', sans-serif;
+    scroll-behavior: smooth;
   }
   
   .img-container img{
@@ -92,6 +93,7 @@
     grid-template-areas:
       'input1 input2';
     gap: 10px;
+    background-color: black;
   }
   .about-content:nth-child(1){
     grid-area: input1;
@@ -100,3 +102,56 @@
   .about-img{
     grid-area: input2;
   }
+  .note-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .note-heading{
+    font-weight: bolder;
+    font-size: 80px;
+  }
+  .note-text{
+    font-size: 30px;
+  }
+  #about-note-shores{
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.432);
+    color: white;
+    white-space: normal;
+    justify-content: center;
+    padding: 2rem;
+    /* text-align: center; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+#about-note-nature{
+  width: 100%;
+  min-height: 40vh;
+  background-color: rgba(0, 0, 0, 0.432);
+  color: white;
+  white-space: normal;
+  justify-content: center;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.about-content{
+color: white;
+font-size: 125px;
+font-weight: bolder;
+padding: 2rem;
+}
+#about-note-rocks{
+  min-height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.432);
+  color: white;
+  white-space: normal;
+  text-align: center;
+  padding: 2rem;
+  font-size: 125px;
+}

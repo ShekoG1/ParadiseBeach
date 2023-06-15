@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 import "./styles/nav.css";
 import { Button } from "./button";
 
@@ -49,12 +49,12 @@ function Nav(){
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/Rooms" className="nav-links" onClick={closeMobilemenu}>
+                                <Link to="/#rooms" className="nav-links" onClick={closeMobilemenu}>
                                     Rooms
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/Book" className="nav-links-mobile" onClick={closeMobilemenu}>
+                                <Link to="/Book/room-1" className="nav-links-mobile" onClick={closeMobilemenu}>
                                     Book now
                                 </Link>
                             </li>
