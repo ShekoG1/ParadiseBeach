@@ -155,3 +155,144 @@ padding: 2rem;
   padding: 2rem;
   font-size: 125px;
 }
+/* Book */
+#book-now-heading,#book-now-description{
+  padding: 4rem;
+}
+#book-now-heading{
+  display: flex;
+  justify-content: center;
+  font-size: 80px;
+}
+#book-now-description{
+  display: grid;
+  grid-template-areas:
+    'image details';
+  border-radius: 12px;
+  box-shadow: 0 0 5px 5px rgb(60, 60, 60);
+  margin: 2rem;
+}
+#description-img{
+  grid-area: image;
+  width: 50vw;
+}
+#description-img img{
+  max-width: 100%;
+  border-radius: 12px;
+}
+#description-detail{
+  grid-area: details;
+  padding: 2rem;
+}
+#room-description{
+  font-size: 30px;
+}
+#room-dimensions{
+  margin: 2rem;
+  font-size: 20px;
+}
+#room-price-container{
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+#room-price{
+  font-size: 40px;
+  font-weight: bolder;
+  background-color: green;
+  color: white;
+  padding: 15px;
+  border-radius: 24px;
+}
+.highlight{
+  font-size: 50px;
+  font-weight: 550;
+}
+#booking-details-container{
+  display: grid;
+  grid-template-areas:
+    'form terms';
+  border-radius: 12px;
+  box-shadow: 0 0 5px 5px rgb(60, 60, 60);
+  margin: 2rem;
+}
+#booking-details{
+  grid-area: form;
+  padding: 2rem;
+  width: 40vw;
+}
+#booking-details h1{
+  font-size: 50px;
+}
+#booking-form{
+  padding: 2rem;
+}
+.form-input{
+  display: grid;
+  grid-template-areas:
+    'label label label'
+    'validation input input';
+}
+.form-input label{
+  grid-area: label;
+  font-size: 25px;
+  margin-top: 2rem;
+}
+.form-input .input-validation-field{
+  grid-area: validation;
+  background-color: rgba(128, 128, 128, 0.278);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  border: 2px solid rgba(128, 128, 128, 0.482);
+  border-radius: 100%;
+}
+.form-input input{
+  grid-area: input;
+  background-color: rgba(128, 128, 128, 0.278);
+  padding: 12px;
+  border: 2px solid rgba(128, 128, 128, 0.482);
+  border-radius: 12px;
+  margin-right: 5rem;
+}
+#booking-details-terms{
+  padding: 2rem;
+}
+#terms{
+  height: 60%;
+  overflow: auto;
+  font-size: 18px;
+  background-color: rgba(128, 128, 128, 0.482);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 5%;
+}
+#terms-accept-box{
+  font-size: 25px;
+  display: flex;
+  justify-content: left;
+}
+#terms-accept-box input{
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: 4rem;
+}
+#book-btn-container{
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+#book-btn{
+  max-height: 4rem;
+  font-size: 30px;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: rgb(111, 111, 238);
+  color: white;
+}
