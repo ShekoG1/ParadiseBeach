@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import { useParams } from "react-router-dom";
 import Footer from "../components/footer";
+import Swal from "sweetalert2";
 
 export default function Book(){
 
@@ -36,6 +37,10 @@ export default function Book(){
             <p>These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Adventure Resort is located.</p>
             <p>By making a reservation, you acknowledge that you have read, understood, and agreed to these terms and conditions.</p>
         </div>;
+
+    // Constructors
+    // eslint-disable-next-line
+    const Swal = require('sweetalert2');
 
     var dimensions;
     var features;
@@ -101,7 +106,12 @@ export default function Book(){
     }
     const handleSubmit = () => {
         if(!acceptTerms){
-            alert("To continue with the booking process, please accept our terms and conditions");
+            Swal.fire({
+                title: 'Error!',
+                text: 'To continue with the booking process, please accept our terms and conditions',
+                icon: 'error',
+                confirmButtonText: 'Got it!'
+            });
         }else{
             let hasError = false;
             let errorMsg = "";
@@ -150,13 +160,30 @@ export default function Book(){
             }
 
             if(!hasError){
-                alert("No bookings are currently available for this room!");
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'No bookings are currently available for this room!',
+                    icon: 'error',
+                    confirmButtonText: 'Okay!'
+                });
             }else{
-                alert(`<h1>Opps...It looks like there are some errors</h1><ul>${errorMsg}</ul>`);
+                Swal.fire({
+                    title: 'Error!',
+                    html: `<h1>Opps...It looks like there are some errors</h1><ul> ${errorMsg}</ul>`,
+                    icon: 'error',
+                    confirmButtonText: 'Got it!'
+                });
             }
         }
-        // console.log(firstName.current.value)
     };
+    const handleImgclick = (imgClickevent) => {
+        Swal.fire({
+            title: 'View image!',
+            html: `<img src='${imgClickevent.target.src}' width="350">`,
+            icon: 'info',
+            confirmButtonText: 'Done!'
+        });
+    }
 
     var showErrormesage = false;
 
@@ -290,11 +317,11 @@ export default function Book(){
             </section>
             <section id="book-now-description">
                 <div id="description-img">
-                    <img className="description-img" src={roomImage} alt="Room"/>
-                    <img className="description-img" src={roomImage} alt="Room"/>
-                    <img className="description-img" src={roomImage} alt="Room"/>
-                    <img className="description-img" src={roomImage} alt="Room"/>
-                    <img className="description-img" src={roomImage} alt="Room"/>
+                    <img className="description-img" onClick={handleImgclick} src={roomImage} alt="Room"/>
+                    <img className="description-img" onClick={handleImgclick} src={roomImage} alt="Room"/>
+                    <img className="description-img" onClick={handleImgclick} src={roomImage} alt="Room"/>
+                    <img className="description-img" onClick={handleImgclick} src={roomImage} alt="Room"/>
+                    <img className="description-img" onClick={handleImgclick} src={roomImage} alt="Room"/>
                 </div>
                 <div id="description-detail">
                     {/* Columns */}
