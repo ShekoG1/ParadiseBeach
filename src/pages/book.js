@@ -1,59 +1,168 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
 import { useParams } from "react-router-dom";
-
+import Footer from "../components/footer";
 
 export default function Book(){
 
+        // In a perfect world, the following variables would be grabbed from a DB
+        var roomHeight;
+        var roomWidth;
+        var roomLength;
+        var roomPrice;
+        var roomDescription;
+        var roomImage;
+        var roomName;
+        var terms_and_conditions = <div id="terms">
+            <h1>Terms and Conditions</h1>
+            <h2>Room Booking at Adventure Resort</h2>
+            <p>Welcome to Adventure Resort! These terms and conditions govern your booking of a resort room with us. Please read this document carefully before making a reservation.</p>
+            <p>1. Reservation and Confirmation</p>
+            <p>All room reservations are subject to availability. To book a room, you must provide accurate personal information and payment details. Upon successful reservation, you will receive a confirmation email containing the booking details.</p>
+            <p>2. Payment and Cancellation Policy</p>
+            <p>a) Payment: Full payment is required at the time of booking. We accept major credit cards and electronic bank transfers. Payment details will be provided during the reservation process.</p>
+            <p>b) Cancellation: Cancellations made at least 48 hours prior to the scheduled arrival date will receive a full refund. Cancellations made within 48 hours of the scheduled arrival date will incur a cancellation fee equivalent to one night's stay.</p>
+            <p>3. Check-In and Check-Out</p>
+            <p>a) Check-In: Standard check-in time is 3:00 PM local time. Early check-in is subject to availability and may incur additional charges.</p>
+            <p>b) Check-Out: Standard check-out time is 11:00 AM local time. Late check-out may be granted upon request, subject to availability and additional charges.</p>
+            <p>4. Guest Responsibility</p>
+            <p>a) Age Requirement: Guests must be 18 years of age or older to book a room and check-in.</p>
+            <p>b) Behavior: Guests are expected to conduct themselves in a respectful manner and comply with resort policies. Any damage caused to resort property will be the responsibility of the guest.</p>
+            <p>5. Liability</p>
+            <p>Adventure Resort is not liable for any loss, damage, or injury that occurs during your stay, including but not limited to personal belongings, accidents, or medical emergencies. Guests are encouraged to obtain travel insurance for their own protection.</p>
+            <p>6. Modifications and Termination</p>
+            <p>Adventure Resort reserves the right to modify or terminate any reservation or these terms and conditions at its discretion, with or without notice.</p>
+            <p>7. Governing Law</p>
+            <p>These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Adventure Resort is located.</p>
+            <p>By making a reservation, you acknowledge that you have read, understood, and agreed to these terms and conditions.</p>
+        </div>;
+
+    var dimensions;
+    var features;
+
+    // SVGs
+    const svg_incorrect = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="bi bi-x" viewBox="0 0 16 16">
+        <path stroke="red" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" fill="red"/>
+    </svg>;
+    const svg_correct = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M9 16.17l-4.17-4.17-1.42 1.41L9 19 21.59 6.41 20.17 5" fill="none" stroke="green" strokeWidth="2" />
+    </svg>;
+
+    // Updatable
     const params = useParams();
-    const handleBooking = ()=>{
-        alert("Thankyou for your interest in one of our elite rooms!Our bookings are currently full. Please try again later.");
+    const [acceptTerms,setAcceptTerms] = useState(false);
+    const [svg_firstName,set_svg_firstName] = useState(svg_correct);
+    const [svg_lastName,set_svg_lastName] = useState(svg_correct);
+    const [svg_emailAddress,set_svg_emailAddress] = useState(svg_correct);
+    const [svg_confirmEmail,set_svg_confirmEmail] = useState(svg_correct);
+    const [svg_fromDate,set_svg_fromDate] = useState(svg_correct);
+    const [svg_toDate,set_svg_toDate] = useState(svg_correct);
+    const [tabContent, setTabcontent] = useState(roomDescription);
+
+    const [tab_descripton_classList, set_tab_descripton_classList] = useState("");
+    const [tab_details_classList, set_tab_details_classList] = useState("");
+    const [tab_features_classList, set_tab_features_classList] = useState("");
+
+    // Refs
+    let firstName = React.createRef();
+    let lastName = React.createRef();
+    let emailAddress = React.createRef();
+    let confirmEmail = React.createRef();
+    let fromDate = React.createRef();
+    let toDate = React.createRef();
+
+    // Handler Functions
+    const handleTermsclick = (termsEvent) => {
+        setAcceptTerms(termsEvent.target.checked);
+    };
+    const handleTabclick = (tabEvent) =>{
+        // Set all tabs to inactive, then only set the clicked tab to active
+        set_tab_descripton_classList("");
+        set_tab_details_classList("");
+        set_tab_features_classList("");
+
+       switch (tabEvent.target.id) {
+        case "tab_description":
+            setTabcontent(roomDescription);
+            set_tab_descripton_classList("tab_active");
+        break;
+        case "tab_details":
+            setTabcontent(dimensions);
+            set_tab_details_classList("tab_active");
+        break;
+        case "tab_features":
+            setTabcontent(features);
+            set_tab_features_classList("tab_active");
+        break;
+       
+        default:
+            break;
+       }
     }
+    const handleSubmit = () => {
+        if(!acceptTerms){
+            alert("To continue with the booking process, please accept our terms and conditions");
+        }else{
+            let hasError = false;
+            let errorMsg = "";
+
+            if(firstName.current.value === ""){
+                set_svg_firstName(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'First Name' filed cannot be empty</li>";
+            }else{
+                set_svg_firstName(svg_correct);
+            }
+            if(lastName.current.value === ""){
+                set_svg_lastName(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'Last Name' filed cannot be empty</li>";
+            }else{
+                set_svg_lastName(svg_correct);
+            }
+            if(emailAddress.current.value === ""){
+                set_svg_emailAddress(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'Email Address' filed cannot be empty</li>";
+            }else{
+                set_svg_emailAddress(svg_correct);
+            }
+            if(confirmEmail.current.value === ""){
+                set_svg_confirmEmail(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'Confirm Email Address' filed cannot be empty</li>";
+            }else{
+                set_svg_confirmEmail(svg_correct);
+            }
+            if(fromDate.current.value === ""){
+                set_svg_fromDate(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'From Date' filed cannot be empty</li>";
+            }else{
+                set_svg_fromDate(svg_correct);
+            }
+            if(toDate.current.value === ""){
+                set_svg_toDate(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'To Date' filed cannot be empty</li>";
+            }else{
+                set_svg_toDate(svg_correct);
+            }
+
+            if(!hasError){
+                alert("No bookings are currently available for this room!");
+            }else{
+                alert(`<h1>Opps...It looks like there are some errors</h1><ul>${errorMsg}</ul>`);
+            }
+        }
+        // console.log(firstName.current.value)
+    };
 
     var showErrormesage = false;
-    // In a perfect world, the following variables would be grabbed from a DB
-    var roomHeight;
-    var roomWidth;
-    var roomLength;
-    var roomPrice;
-    var roomDescription;
-    var roomImage;
-    var terms_and_conditions = <div id="terms">
- <h1>Terms and Conditions</h1>
-    <h2>Room Booking at Adventure Resort</h2>
-
-    <p>Welcome to Adventure Resort! These terms and conditions govern your booking of a resort room with us. Please read this document carefully before making a reservation.</p>
-
-    <p>1. Reservation and Confirmation</p>
-    <p>All room reservations are subject to availability. To book a room, you must provide accurate personal information and payment details. Upon successful reservation, you will receive a confirmation email containing the booking details.</p>
-
-    <p>2. Payment and Cancellation Policy</p>
-    <p>a) Payment: Full payment is required at the time of booking. We accept major credit cards and electronic bank transfers. Payment details will be provided during the reservation process.</p>
-    <p>b) Cancellation: Cancellations made at least 48 hours prior to the scheduled arrival date will receive a full refund. Cancellations made within 48 hours of the scheduled arrival date will incur a cancellation fee equivalent to one night's stay.</p>
-
-    <p>3. Check-In and Check-Out</p>
-    <p>a) Check-In: Standard check-in time is 3:00 PM local time. Early check-in is subject to availability and may incur additional charges.</p>
-    <p>b) Check-Out: Standard check-out time is 11:00 AM local time. Late check-out may be granted upon request, subject to availability and additional charges.</p>
-
-    <p>4. Guest Responsibility</p>
-    <p>a) Age Requirement: Guests must be 18 years of age or older to book a room and check-in.</p>
-    <p>b) Behavior: Guests are expected to conduct themselves in a respectful manner and comply with resort policies. Any damage caused to resort property will be the responsibility of the guest.</p>
-
-    <p>5. Liability</p>
-    <p>Adventure Resort is not liable for any loss, damage, or injury that occurs during your stay, including but not limited to personal belongings, accidents, or medical emergencies. Guests are encouraged to obtain travel insurance for their own protection.</p>
-
-    <p>6. Modifications and Termination</p>
-    <p>Adventure Resort reserves the right to modify or terminate any reservation or these terms and conditions at its discretion, with or without notice.</p>
-
-    <p>7. Governing Law</p>
-    <p>These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Adventure Resort is located.</p>
-
-    <p>By making a reservation, you acknowledge that you have read, understood, and agreed to these terms and conditions.</p>
-
-    </div>;
 
     switch (params.roomName) {
         case "room-1":
+            roomName = "Ocean Vista Suite";
             roomHeight = 2500;
             roomWidth = 1300;
             roomLength = 1320;
@@ -66,6 +175,7 @@ export default function Book(){
             </div>;
         break;
         case "room-2":
+            roomName = "Beachfront Bungalow";
             roomHeight = 2500;
             roomWidth = 1300;
             roomLength = 1320;
@@ -78,6 +188,7 @@ export default function Book(){
             </div>;
         break;
         case "room-3":
+            roomName = "Palm Paradise Villa";
             roomHeight = 2500;
             roomWidth = 1300;
             roomLength = 1320;
@@ -91,6 +202,7 @@ export default function Book(){
         break;
 
         case "room-4":
+            roomName = "Seaside Retreat Room";
             roomHeight = 2500;
             roomWidth = 1300;
             roomLength = 1320;
@@ -103,6 +215,7 @@ export default function Book(){
             </div>;
         break;
         case "room-5":
+            roomName = "Tropical Oasis Cabana";
             roomHeight = 2500;
             roomWidth = 1300;
             roomLength = 1320;
@@ -115,6 +228,7 @@ export default function Book(){
             </div>;
         break;
         case "room-6":
+            roomName = "Coastal Chic Suite";
             roomHeight = 2500;
             roomWidth = 1300;
             roomLength = 1320;
@@ -133,30 +247,68 @@ export default function Book(){
             break;
     }
 
+    // HTML Variables
+    dimensions = <div id="room-dimensions">
+        <span><em>Dimensions:</em></span>
+        <ul>
+            <li><em>Height: {roomHeight}</em></li>
+            <li><em>Width: {roomWidth}</em></li>
+            <li><em>Length: {roomLength}</em></li>
+        </ul>
+        <span><em>Number of rooms: 3 (Standard)</em></span>
+    </div>
+    features = <div id="room-features">
+        <ul>
+        <li>Ocean View</li>
+        <li>Private Balcony or Terrace</li>
+        <li>King or Queen Size Bed</li>
+        <li>Ensuite Bathroom</li>
+        <li>Air Conditioning</li>
+        <li>Flat-screen TV</li>
+        <li>Mini Fridge</li>
+        <li>Coffee Maker</li>
+        <li>Safe</li>
+        <li>Wi-Fi Access</li>
+        <li>Work Desk</li>
+        <li>Sitting Area</li>
+        <li>Beach-inspired Décor</li>
+        <li>Plush Linens and Towels</li>
+        <li>Bathrobes and Slippers</li>
+        <li>Hairdryer</li>
+        <li>Iron and Ironing Board</li>
+        <li>In-room Dining Service</li>
+        <li>Daily Housekeeping</li>
+        <li>Room Service</li>
+        </ul>
+    </div>
+
     if(!showErrormesage){
     return (
         <>
             <section id="book-now-heading">
-                <h1>{params.roomName}</h1>
+                <h1>{roomName}</h1>
             </section>
             <section id="book-now-description">
                 <div id="description-img">
-                    <img src={roomImage} alt="Room"/>
+                    <img className="description-img" src={roomImage} alt="Room"/>
+                    <img className="description-img" src={roomImage} alt="Room"/>
+                    <img className="description-img" src={roomImage} alt="Room"/>
+                    <img className="description-img" src={roomImage} alt="Room"/>
+                    <img className="description-img" src={roomImage} alt="Room"/>
                 </div>
                 <div id="description-detail">
-                    {roomDescription}
-                    <div id="room-dimensions">
-                        <span><em>Dimensions:</em></span>
-                        <ul>
-                            <li><em>Height: {roomHeight}</em></li>
-                            <li><em>Width: {roomWidth}</em></li>
-                            <li><em>Length: {roomLength}</em></li>
-                        </ul>
-                    </div>
+                    {/* Columns */}
+                        <div className="actionColumns">
+                            <span className={tab_descripton_classList} id="tab_description" onClick={handleTabclick}>Description</span>
+                            <span className={tab_details_classList} id="tab_details" onClick={handleTabclick}>Details</span>
+                            <span className={tab_features_classList} id="tab_features" onClick={handleTabclick}>Features</span>
+                        </div>
+
+                    {tabContent}
                     <div id="room-price-container">
-                        <span id="room-price">
+                        <a id="room-price" href="#book-btn-container">
                             $ {roomPrice} Per Night
-                        </span>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -165,7 +317,7 @@ export default function Book(){
                     {terms_and_conditions}
                     <div id="terms-accept-box">
                         <label>Accept terms and conditions? </label>
-                        <input type="checkbox" id="terms"/>
+                        <input type="checkbox" onChange={handleTermsclick} id="terms"/>
                     </div>
                 </div>
                 <div id="booking-details">
@@ -174,64 +326,56 @@ export default function Book(){
                         <div className="form-input">
                             <label>First Name:</label>
                             <span className="input-validation-field">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M9 16.17l-4.17-4.17-1.42 1.41L9 19 21.59 6.41 20.17 5" fill="none" stroke="green" stroke-width="2" />
-                                </svg>
+                                {svg_firstName}
                             </span>
-                            <input type="text" placeholder="John"/>
+                            <input ref={firstName} type="text" placeholder="John"/>
                         </div>
                         <div className="form-input">
                             <label>Last Name:</label>
                             <span className="input-validation-field">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M9 16.17l-4.17-4.17-1.42 1.41L9 19 21.59 6.41 20.17 5" fill="none" stroke="green" stroke-width="2" />
-                                </svg>
+                                {svg_lastName}
                             </span>
-                            <input type="text" placeholder="Doe"/>
+                            <input ref={lastName} type="text" placeholder="Doe"/>
                         </div>
                         <div className="form-input">
                             <label>Email Address:</label>
                             <span className="input-validation-field">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M9 16.17l-4.17-4.17-1.42 1.41L9 19 21.59 6.41 20.17 5" fill="none" stroke="green" stroke-width="2" />
-                                </svg>
+                                {svg_emailAddress}
                             </span>
-                            <input type="email" placeholder="john@example.com"/>
+                            <input ref={emailAddress} type="email" placeholder="john@example.com"/>
                         </div>
                         <div className="form-input">
                             <label>Backup Email:</label>
                             <span className="input-validation-field">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M9 16.17l-4.17-4.17-1.42 1.41L9 19 21.59 6.41 20.17 5" fill="none" stroke="green" stroke-width="2" />
-                                </svg>
+                                {svg_confirmEmail}
                             </span>
-                            <input type="email" placeholder="doe@example.com"/>
+                            <input ref={confirmEmail} type="email" placeholder="doe@example.com"/>
                         </div>
 
                         <div className="form-input">
                             <label>From (Date):</label>
                             <span className="input-validation-field">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M9 16.17l-4.17-4.17-1.42 1.41L9 19 21.59 6.41 20.17 5" fill="none" stroke="green" stroke-width="2" />
-                                </svg>
+                                {svg_fromDate}
                             </span>
-                            <input type="date"/>
+                            <input ref={fromDate} type="date"/>
                         </div>
                         <div className="form-input">
                             <label>To (Date):</label>
                             <span className="input-validation-field">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M9 16.17l-4.17-4.17-1.42 1.41L9 19 21.59 6.41 20.17 5" fill="none" stroke="green" stroke-width="2" />
-                                </svg>
+                                {svg_toDate}
                             </span>
-                            <input type="date"/>
+                            <input ref={toDate} type="date"/>
                         </div>
                         <div id="book-btn-container">
-                            <input type="button" id="book-btn" value="Book Now With PayPal" onClick={handleBooking}/>
+                            <button type="button" id="book-btn" onClick={handleSubmit}>
+                            <img src="/images/logo.svg" alt="Logo"/>
+                            Book Now With PayPal
+                            </button>
                         </div>
                     </div>
                 </div>
             </section>
+            <Footer/>
         </>
     );
     }else{

@@ -10,10 +10,10 @@ function Hero() {
         <h1>Adventure Awaits</h1>
         <p>What are you waiting for?</p>
         <div className='hero-btns'>
-            <Button className="btns" buttonStyle="btn-outline" buttonSize="btn-large">
+            <Button className="btns" buttonStyle="btn-outline" linkTo="/#rooms" buttonSize="btn-large">
                 Book a Trip!
             </Button>
-            <Button className="btns" buttonStyle="btn-primary" buttonSize="btn-large">
+            <Button className="btns" buttonStyle="btn-primary" linkTo="/book/room-1" buttonSize="btn-large">
                 View the tour <i className='far fa-play-circle'/>
             </Button>
         </div>

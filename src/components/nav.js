@@ -30,6 +30,7 @@ function Nav(){
             <nav className="navbar">
                 <div className="navbar-container">
                     <Link to="/" className="navbar-logo" onClick={closeMobilemenu}>
+                        <img src="/images/logo.svg" alt="Logo"/>
                     ParadiseBeach
                     </Link>
                     
@@ -59,7 +60,7 @@ function Nav(){
                                 </Link>
                             </li>
                         </ul>
-                        {button && <Button buttonStyle="btn-outline" buttonSize="btn-medium">Book now</Button>}
+                        {button && <Button buttonStyle="btn-outline" linkTo="/#rooms" buttonSize="btn-medium">Book now</Button>}
                     
                 </div>
             </nav>

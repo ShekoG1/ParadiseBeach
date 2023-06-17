@@ -10,7 +10,30 @@
     max-width: 100%;
     width: 100%;
   }
-
+  .actionColumns{
+    display: flex;
+    overflow: auto;
+    max-width: 100%;
+    white-space: nowrap;
+    gap: 50px;
+    justify-content: center;
+    font-size: 30px;
+    border-bottom: 5px solid rgb(233, 233, 233);
+    margin: 1rem;
+  }
+  .actionColumns span{
+    transition: 1s;
+    border-bottom: 5px solid rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  .actionColumns span:hover{
+    color: #1f98f4;
+    border-bottom-color: #1f98f4;
+  }
+  .tab_active{
+    color: #1f98f4;
+    border-bottom-color: #1f98f4;
+  }
   .home,
   .services,
   .products,
@@ -98,6 +121,9 @@
   .about-content:nth-child(1){
     grid-area: input1;
     width: 50vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
   }
   .about-img{
     grid-area: input2;
@@ -167,29 +193,56 @@ padding: 2rem;
 #book-now-description{
   display: grid;
   grid-template-areas:
-    'image details';
-  border-radius: 12px;
-  box-shadow: 0 0 5px 5px rgb(60, 60, 60);
+    'image image image'
+    'details details details';
+  /* border-radius: 12px;
+  box-shadow: 0 0 5px 5px rgb(60, 60, 60); */
   margin: 2rem;
 }
 #description-img{
   grid-area: image;
-  width: 50vw;
+  display: grid;
+  grid-template-areas:
+    'main side1 side2'
+    'main side3 side4';
 }
 #description-img img{
   max-width: 100%;
   border-radius: 12px;
+  height: 100%;
+  padding: 12px;
 }
+.description-img:nth-child(1){
+  grid-area: main;
+}
+.description-img:nth-child(2){
+  grid-area: side1;
+}
+.description-img:nth-child(3){
+  grid-area: side2;
+}
+.description-img:nth-child(4){
+  grid-area: side3;
+}
+.description-img:nth-child(5){
+  grid-area: side4;
+}
+
 #description-detail{
   grid-area: details;
   padding: 2rem;
 }
 #room-description{
   font-size: 30px;
+  padding: 2rem;
 }
 #room-dimensions{
-  margin: 2rem;
-  font-size: 20px;
+  padding: 2rem;
+  font-size: 30px;
+}
+#room-features{
+  padding: 2rem;
+  font-size: 30px;
 }
 #room-price-container{
   width: 100%;
@@ -203,6 +256,7 @@ padding: 2rem;
   color: white;
   padding: 15px;
   border-radius: 24px;
+  text-decoration: none;
 }
 .highlight{
   font-size: 50px;
@@ -212,8 +266,8 @@ padding: 2rem;
   display: grid;
   grid-template-areas:
     'form terms';
-  border-radius: 12px;
-  box-shadow: 0 0 5px 5px rgb(60, 60, 60);
+  /* border-radius: 12px;
+  box-shadow: 0 0 5px 5px rgb(60, 60, 60); */
   margin: 2rem;
 }
 #booking-details{
@@ -293,6 +347,11 @@ padding: 2rem;
   font-size: 30px;
   padding: 12px;
   border-radius: 12px;
-  background-color: rgb(111, 111, 238);
+  background-color: #1f98f4;
   color: white;
+  text-align: center;
+  display: flex;
+}
+#book-btn img{
+  max-height: 40px;
 }
