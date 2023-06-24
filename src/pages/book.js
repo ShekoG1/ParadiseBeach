@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 import "../App.css";
 import { useParams } from "react-router-dom";
 import Footer from "../components/footer";
@@ -37,7 +37,6 @@ export default function Book(){
             <p>These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Adventure Resort is located.</p>
             <p>By making a reservation, you acknowledge that you have read, understood, and agreed to these terms and conditions.</p>
         </div>;
-
     // Constructors
     // eslint-disable-next-line
     const Swal = require('sweetalert2');
@@ -76,116 +75,6 @@ export default function Book(){
     let fromDate = React.createRef();
     let toDate = React.createRef();
 
-    // Handler Functions
-    const handleTermsclick = (termsEvent) => {
-        setAcceptTerms(termsEvent.target.checked);
-    };
-    const handleTabclick = (tabEvent) =>{
-        // Set all tabs to inactive, then only set the clicked tab to active
-        set_tab_descripton_classList("");
-        set_tab_details_classList("");
-        set_tab_features_classList("");
-
-       switch (tabEvent.target.id) {
-        case "tab_description":
-            setTabcontent(roomDescription);
-            set_tab_descripton_classList("tab_active");
-        break;
-        case "tab_details":
-            setTabcontent(dimensions);
-            set_tab_details_classList("tab_active");
-        break;
-        case "tab_features":
-            setTabcontent(features);
-            set_tab_features_classList("tab_active");
-        break;
-       
-        default:
-            break;
-       }
-    }
-    const handleSubmit = () => {
-        if(!acceptTerms){
-            Swal.fire({
-                title: 'Error!',
-                text: 'To continue with the booking process, please accept our terms and conditions',
-                icon: 'error',
-                confirmButtonText: 'Got it!'
-            });
-        }else{
-            let hasError = false;
-            let errorMsg = "";
-
-            if(firstName.current.value === ""){
-                set_svg_firstName(svg_incorrect);
-                hasError = true;
-                errorMsg += "<li>The 'First Name' filed cannot be empty</li>";
-            }else{
-                set_svg_firstName(svg_correct);
-            }
-            if(lastName.current.value === ""){
-                set_svg_lastName(svg_incorrect);
-                hasError = true;
-                errorMsg += "<li>The 'Last Name' filed cannot be empty</li>";
-            }else{
-                set_svg_lastName(svg_correct);
-            }
-            if(emailAddress.current.value === ""){
-                set_svg_emailAddress(svg_incorrect);
-                hasError = true;
-                errorMsg += "<li>The 'Email Address' filed cannot be empty</li>";
-            }else{
-                set_svg_emailAddress(svg_correct);
-            }
-            if(confirmEmail.current.value === ""){
-                set_svg_confirmEmail(svg_incorrect);
-                hasError = true;
-                errorMsg += "<li>The 'Confirm Email Address' filed cannot be empty</li>";
-            }else{
-                set_svg_confirmEmail(svg_correct);
-            }
-            if(fromDate.current.value === ""){
-                set_svg_fromDate(svg_incorrect);
-                hasError = true;
-                errorMsg += "<li>The 'From Date' filed cannot be empty</li>";
-            }else{
-                set_svg_fromDate(svg_correct);
-            }
-            if(toDate.current.value === ""){
-                set_svg_toDate(svg_incorrect);
-                hasError = true;
-                errorMsg += "<li>The 'To Date' filed cannot be empty</li>";
-            }else{
-                set_svg_toDate(svg_correct);
-            }
-
-            if(!hasError){
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'No bookings are currently available for this room!',
-                    icon: 'error',
-                    confirmButtonText: 'Okay!'
-                });
-            }else{
-                Swal.fire({
-                    title: 'Error!',
-                    html: `<h1>Opps...It looks like there are some errors</h1><ul> ${errorMsg}</ul>`,
-                    icon: 'error',
-                    confirmButtonText: 'Got it!'
-                });
-            }
-        }
-    };
-    const handleImgclick = (imgClickevent) => {
-        Swal.fire({
-            title: 'View image!',
-            html: `<img src='${imgClickevent.target.src}' width="350">`,
-            icon: 'info',
-            confirmButtonText: 'Done!'
-        });
-    }
-
-    var showErrormesage = false;
 
     switch (params.roomName) {
         case "room-1":
@@ -273,6 +162,157 @@ export default function Book(){
             showErrormesage = true;
             break;
     }
+
+    // Handler Functions
+    const handleTermsclick = (termsEvent) => {
+        setAcceptTerms(termsEvent.target.checked);
+    };
+    const handleTabclick = (tabEvent) =>{
+        // Set all tabs to inactive, then only set the clicked tab to active
+        set_tab_descripton_classList("");
+        set_tab_details_classList("");
+        set_tab_features_classList("");
+
+       switch (tabEvent.target.id) {
+        case "tab_description":
+            setTabcontent(roomDescription);
+            set_tab_descripton_classList("tab_active");
+        break;
+        case "tab_details":
+            setTabcontent(dimensions);
+            set_tab_details_classList("tab_active");
+        break;
+        case "tab_features":
+            setTabcontent(features);
+            set_tab_features_classList("tab_active");
+        break;
+       
+        default:
+            break;
+       }
+    }
+    const handleSubmit = () => {
+        if(!acceptTerms){
+            Swal.fire({
+                title: 'Error!',
+                text: 'To continue with the booking process, please accept our terms and conditions',
+                icon: 'error',
+                confirmButtonText: 'Got it!'
+            });
+        }else{
+            let hasError = false;
+            let errorMsg = "";
+
+            if(firstName.current.value === ""){
+                set_svg_firstName(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'First Name' filed cannot be empty</li>";
+            }else{
+                set_svg_firstName(svg_correct);
+            }
+            if(lastName.current.value === ""){
+                set_svg_lastName(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'Last Name' filed cannot be empty</li>";
+            }else{
+                set_svg_lastName(svg_correct);
+            }
+            if(emailAddress.current.value === ""){
+                set_svg_emailAddress(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'Email Address' filed cannot be empty</li>";
+            }else{
+                set_svg_emailAddress(svg_correct);
+            }
+            if(confirmEmail.current.value === ""){
+                set_svg_confirmEmail(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'Confirm Email Address' filed cannot be empty</li>";
+            }else{
+                set_svg_confirmEmail(svg_correct);
+            }
+            if(fromDate.current.value === ""){
+                set_svg_fromDate(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'From Date' filed cannot be empty</li>";
+            }else{
+                set_svg_fromDate(svg_correct);
+            }
+            if(toDate.current.value === ""){
+                set_svg_toDate(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'To Date' filed cannot be empty</li>";
+            }else{
+                set_svg_toDate(svg_correct);
+            }
+            if(emailAddress.current.value != confirmEmail.current.value){
+                set_svg_emailAddress(svg_incorrect);
+                hasError = true;
+                errorMsg += "<li>The 'Email Address' filed cannot be empty</li>";
+                set_svg_confirmEmail(svg_incorrect);
+                errorMsg += "<li>The 'Confirm Email Address' filed cannot be empty</li>";
+            }
+
+            if(!hasError){
+                let roomId = roomName.split("-")[1];
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                var raw = JSON.stringify({
+                "roomId": roomId,
+                "price": roomPrice,
+                "checkIndate": `${fromDate.current.value}`,
+                "checkOutdate": `${toDate.current.value}`,
+                "fullName": `${firstName.current.value} ${lastName.current.value}`,
+                "emailAddress": "usertodelete@gmail.com"
+                });
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+
+                fetch("/api/booking/create/", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    let data = JSON.parse(result);
+                    if(data.message == "success"){
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Booking complete!',
+                            icon: 'success',
+                            confirmButtonText: 'Okay!'
+                        });
+                    }else{
+                        Swal.fire({
+                            title: 'Error!',
+                            html: '<h1>Opps...It looks like there were some errors submitting this booking! Please try again later.</h1>',
+                            icon: 'error',
+                            confirmButtonText: 'Got it!'
+                        });
+                    }
+                })
+                .catch(error => console.log('error', error));
+            }else{
+                Swal.fire({
+                    title: 'Error!',
+                    html: `<h1>Opps...It looks like there are some errors</h1><ul> ${errorMsg}</ul>`,
+                    icon: 'error',
+                    confirmButtonText: 'Got it!'
+                });
+            }
+        }
+    };
+    const handleImgclick = (imgClickevent) => {
+        Swal.fire({
+            title: 'View image!',
+            html: `<img src='${imgClickevent.target.src}' width="350">`,
+            icon: 'info',
+            confirmButtonText: 'Done!'
+        });
+    }
+
+    var showErrormesage = false;
 
     // HTML Variables
     dimensions = <div id="room-dimensions">

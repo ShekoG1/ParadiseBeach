@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, {useEffect,useState} from 'react';
 import Nav from "./components/nav";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import home from './pages/home';
@@ -8,6 +8,7 @@ import Rooms from './pages/rooms';
 import Book from './pages/book';
 
 function App() {
+
   return (
     <>
       <Router>
