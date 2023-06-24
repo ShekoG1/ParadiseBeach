@@ -1,0 +1,3 @@
+This serves as the backend API for the ParadiseBeach project.
+
+The API is built on NodeJS, Express, MongoDB and Mongoose to connect to a ReactJs application.
